@@ -20,6 +20,7 @@ public class SeleniumDriver {
     public ChromeDriver driver(){
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        options.addArguments("--disable-dev-shm-usage");
         return new ChromeDriver(options);
     }
 }
