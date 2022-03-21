@@ -5,6 +5,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 

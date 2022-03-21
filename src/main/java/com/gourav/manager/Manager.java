@@ -48,8 +48,9 @@ public class Manager {
             WebElement detailsDivLeft = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mvici-left")));
             WebElement detailsDivRight = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("mvici-right")));
             List<WebElement> rightVals = detailsDivRight.findElements(By.tagName("p"));
-            item.setGenre(detailsDivLeft.findElements(By.cssSelector("p")).get(0).getText().substring(7));
-            item.setDescription(detailsDiv.findElement(By.className("desc")).getText());
+            item.setGenre(detailsDivLeft.findElements(By.cssSelector("p")).get(0).getText().substring(6));
+            String desc=detailsDiv.findElement(By.className("desc")).getText().length()>250?detailsDiv.findElement(By.className("desc")).getText().substring(0,250):detailsDiv.findElement(By.className("desc")).getText();
+            item.setDescription(desc);
             item.setDuration(rightVals.get(0).getText().substring(10).strip());
             item.setReleaseYear(Integer.parseInt(rightVals.get(2).getText().substring(8).strip()));
             item.setRatings(rightVals.get(3).getText().substring(5));
@@ -92,8 +93,11 @@ public class Manager {
         });
     }
 
-    public List<?> getManager() {
-        return daoBean.getData();
+    public List<?> getManager(Integer page) {
+        return daoBean.getData(page);
+    }
+    public List<?> searchMovieManager(String name){
+        return daoBean.findMovie(name);
     }
 
 }

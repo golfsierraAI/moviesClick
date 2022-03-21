@@ -19,16 +19,17 @@ public class DAO {
        entityManager.flush();
     }
     @Transactional
-    public MovieDetails findMovie(String name) {
+    public List<MovieDetails> findMovie(String name) {
+        System.out.println(name);
         try {
-            return entityManager.createQuery("from MovieDetails where movieName= :name", MovieDetails.class).setParameter("name", name).getSingleResult();
+            return entityManager.createQuery("from MovieDetails where movieName like :name", MovieDetails.class).setParameter("name",name+"%").getResultList();
         } catch (Exception e){
             return null;
         }
     }
 
     @Transactional
-    public List<MovieDetails> getData(){
-        return entityManager.createQuery("from MovieDetails", MovieDetails.class).getResultList();
+    public List<MovieDetails> getData(Integer page){
+        return entityManager.createQuery("from MovieDetails", MovieDetails.class).setFirstResult((page-1)*8).setMaxResults(8).getResultList();
     }
 }

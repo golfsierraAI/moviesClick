@@ -21,9 +21,10 @@ public class Scheduler {
     @Autowired
     private Manager manager;
 
-    @Scheduled(cron = "0 30 10 * * ?", zone = "GMT+5:30")
+//    @Scheduled(cron = "0 30 10 * * ?", zone = "GMT+5:30")
+//    @PostConstruct
     private void scrape() {
-        String url = "https://ww1.gomoviesfree.org/movies/";
+        String url = "https://ww1.gomoviesfree.org/movies/page/5/";
         WebDriverWait wait = new WebDriverWait(driver, 1000);
         System.out.println("Hello");
         driver.get(url);
