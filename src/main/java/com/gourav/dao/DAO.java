@@ -30,6 +30,6 @@ public class DAO {
 
     @Transactional
     public List<MovieDetails> getData(Integer page){
-        return entityManager.createQuery("from MovieDetails", MovieDetails.class).setFirstResult((page-1)*8).setMaxResults(8).getResultList();
+        return entityManager.createQuery("from MovieDetails", MovieDetails.class).setFirstResult((page-1)*15).setMaxResults(15).getResultList();
     }
 }
