@@ -17,7 +17,6 @@ public class ScraperService {
 
     @GetMapping(value = "/get/{page}")
     List<?> getDataService(@PathVariable("page") Integer page){
-        System.out.println(page);
         return managerBean.getManager(page);
     }
 

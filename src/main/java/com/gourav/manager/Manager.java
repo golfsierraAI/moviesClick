@@ -87,7 +87,7 @@ public class Manager {
 
         List<MovieDetails> list = getMovieList(movieList);
         list.forEach((i) -> {
-            if (daoBean.findMovie(i.getMovieName()) == null) {
+            if (daoBean.findMovieScraper (i.getMovieName()) == null) {
                 daoBean.saveData(i);
             }
         });

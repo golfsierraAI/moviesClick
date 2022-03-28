@@ -20,9 +20,17 @@ public class DAO {
     }
     @Transactional
     public List<MovieDetails> findMovie(String name) {
-        System.out.println(name);
         try {
-            return entityManager.createQuery("from MovieDetails where movieName like :name", MovieDetails.class).setParameter("name",name+"%").getResultList();
+            return entityManager.createQuery("from MovieDetails where movieName like :name", MovieDetails.class).setParameter("name","%"+name+"%").getResultList();
+        } catch (Exception e){
+            return null;
+        }
+    }
+
+    @Transactional
+    public MovieDetails findMovieScraper(String name) {
+        try {
+            return entityManager.createQuery("from MovieDetails where movieName= :name", MovieDetails.class).setParameter("name", name).getSingleResult();
         } catch (Exception e){
             return null;
         }
@@ -30,6 +38,6 @@ public class DAO {
 
     @Transactional
     public List<MovieDetails> getData(Integer page){
-        return entityManager.createQuery("from MovieDetails", MovieDetails.class).setFirstResult((page-1)*15).setMaxResults(15).getResultList();
+        return entityManager.createQuery("from MovieDetails order by id desc", MovieDetails.class).setFirstResult((page-1)*16).setMaxResults(16).getResultList();
     }
 }
